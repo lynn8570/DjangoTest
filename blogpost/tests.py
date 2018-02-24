@@ -8,6 +8,10 @@ from datetime import datetime
 from blogpost.views import index, view_post
 from blogpost.models import Blogpost
 
+from django.test import LiveServerTestCase
+from selenium import webdriver
+
+
 class HomePageTest(TestCase):
 	"""docstring for HomePageTest"""
 	def test_root_url_resolves_to_home_page_view(self):
@@ -35,4 +39,28 @@ class BlogpostTest(TestCase):
 			posted=datetime.now)
 		found = resolve('/blog/this_is_a_test.html')
 		self.assertEqual(found.func, view_post)
+
+
+class BlogpostDetailTestCase(LiveServerTestCase):
+	"""docstring for ClassName"""
+	def setUp(self):
+		Blogpost.objects.create(title='hello', author='admin', slug='this_is_a_test', body='this is a blog',
+			posted=datetime.now)
+		self.selenium = webdriver.Firefox(executable_path = '/Users/zowee/Growth/geckodriver');
+		self.selenium.maximize_window()
+		super(BlogpostDetailTestCase,self).setUp()
+
+	def tearDown(self):
+		self.selenium.quit()
+		super(BlogpostDetailTestCase,self).tearDown();
+
+	def test_visit_blog_post(self):
+		self.selenium.get('%s%s' % (self.live_server_url, "/"))
+		self.selenium.find_element_by_link_text("hello").click()
+		self.assertIn("hello",self.selenium.title)
+
+
+
+
+		
 		
