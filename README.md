@@ -44,3 +44,9 @@ Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工
 
 [下载](https://jenkins.io/) 文件，运行`java -jar jenkins.war` 安装，然后[http://0.0.0.0:8080/](http://0.0.0.0:8080/)  点击安装推荐的，等待安装完成。
 
+
+
+User?
+
+
+
