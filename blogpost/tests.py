@@ -46,7 +46,7 @@ class BlogpostDetailTestCase(LiveServerTestCase):
 	def setUp(self):
 		Blogpost.objects.create(title='hello', author='admin', slug='this_is_a_test', body='this is a blog',
 			posted=datetime.now)
-		self.selenium = webdriver.Firefox(executable_path = '/Users/zowee/Growth/geckodriver');
+		self.selenium = webdriver.Firefox(executable_path = '/Users/zowee-laisc/lynn/virtualenvs/geckodriver');
 		self.selenium.maximize_window()
 		super(BlogpostDetailTestCase,self).setUp()
 
